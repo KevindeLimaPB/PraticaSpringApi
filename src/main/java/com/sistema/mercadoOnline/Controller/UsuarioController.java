@@ -31,9 +31,11 @@ public class UsuarioController {
         return usuarioService.findAll();
     }
 
-    @PostMapping
+    @PostMapping("/login")
     @ResponseStatus(HttpStatus.CREATED)
-    public UsuarioEntity save(@Valid @RequestBody UsuarioDto usuarioDto){
+    public UsuarioEntity save(@Valid @RequestBody UsuarioDto usuarioDto) throws Exception{
+
+
         return usuarioService.save(usuarioDto);
     }
 }

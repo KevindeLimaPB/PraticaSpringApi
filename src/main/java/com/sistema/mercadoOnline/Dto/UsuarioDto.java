@@ -1,6 +1,8 @@
 package com.sistema.mercadoOnline.Dto;
 
+import com.sistema.mercadoOnline.Database.Model.Enums.UserRole;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Getter
@@ -16,6 +18,9 @@ public class UsuarioDto {
 
     @NotBlank
     private String senha;
+
+    @NotNull
+    private UserRole role;
 
 
 }
