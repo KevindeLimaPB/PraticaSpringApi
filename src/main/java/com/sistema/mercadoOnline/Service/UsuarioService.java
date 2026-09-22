@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
     private final AuthenticationManager authenticationManager;
+    private final PasswordEncoder passwordEncoder; // Injeta o bean do SecurityConfiguration
 
     //Lista todos os Usuarios
     public List<UsuarioEntity> findAll(){
@@ -31,11 +33,9 @@ public class UsuarioService {
             throw new LoginDuplicadoException("Esse login já Existe");
         }
 
-        String encryptedPassword = new BCryptPasswordEncoder().encode(usuarioDto.getSenha());
-
         UsuarioEntity user = UsuarioEntity.builder()
                 .login(usuarioDto.getLogin())
-                .senha(encryptedPassword)
+                .senha(passwordEncoder.encode(usuarioDto.getSenha()))
                 .role(usuarioDto.getRole())
                 .build();
         return usuarioRepository.save(user);
