@@ -45,8 +45,7 @@ public class UsuarioEntity implements UserDetails {
                 new SimpleGrantedAuthority("ROLE_VIP"),
                 new SimpleGrantedAuthority("ROLE_CLIENTE"));
 
-        else return List.of(
-                new SimpleGrantedAuthority("ROLE_CLIENTE"));
+        return List.of(new SimpleGrantedAuthority("ROLE_CLIENTE"));
     }
 
     @Override

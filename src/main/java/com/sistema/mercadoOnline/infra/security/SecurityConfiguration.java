@@ -11,6 +11,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration//redifinir a configuração padrão
 @EnableWebSecurity//habilita minha própria configuração
@@ -29,7 +30,10 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.POST, "/register/login").permitAll()
                         .requestMatchers(HttpMethod.GET,"/user").permitAll()
                         .requestMatchers(HttpMethod.POST, "/user").hasRole("ADMIN")
-                        .anyRequest().authenticated())
+                        .anyRequest().authenticated()
+                )
+                .addFilterBefore(SecurityFilter, UsernamePasswordAuthenticationFilter.class)
+
                 .build();
     }
     @Bean

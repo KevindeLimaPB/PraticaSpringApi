@@ -18,13 +18,6 @@ public class UsuarioController {
 
     private final UsuarioService usuarioService;
 
-    @GetMapping("/oi")
-    @ResponseStatus(HttpStatus.OK)
-    public String mes(){
-        return "ola";
-    }
-
-
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<UsuarioEntity> findAll(){
@@ -34,8 +27,6 @@ public class UsuarioController {
     @PostMapping("/login")
     @ResponseStatus(HttpStatus.CREATED)
     public UsuarioEntity save(@Valid @RequestBody UsuarioDto usuarioDto) throws Exception{
-
-
         return usuarioService.save(usuarioDto);
     }
 }
