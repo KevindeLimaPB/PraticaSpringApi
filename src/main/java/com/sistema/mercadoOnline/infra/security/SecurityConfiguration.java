@@ -1,5 +1,6 @@
 package com.sistema.mercadoOnline.infra.security;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -15,8 +16,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration//redifinir a configuração padrão
 @EnableWebSecurity//habilita minha própria configuração
+@RequiredArgsConstructor
 public class SecurityConfiguration {
 
+    private final SecurityFilter securityFilter;
 
     //metodo de autorização e authenticação
     @Bean
@@ -32,7 +35,7 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.POST, "/user").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
-                .addFilterBefore(SecurityFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
 
                 .build();
     }

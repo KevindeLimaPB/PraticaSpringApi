@@ -1,6 +1,9 @@
 package com.sistema.mercadoOnline.Controller;
 
+import com.sistema.mercadoOnline.Database.Model.UsuarioEntity;
 import com.sistema.mercadoOnline.Dto.AuthenticationDTO;
+import com.sistema.mercadoOnline.Dto.LoginResponseDTO;
+import com.sistema.mercadoOnline.infra.security.TokenService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticationController {
 
     private final AuthenticationManager authenticationManager;
+    private final TokenService tokenService;
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid AuthenticationDTO authenticationDTO){
@@ -24,6 +28,8 @@ public class AuthenticationController {
                 authenticationDTO.login(),
                 authenticationDTO.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);
-        return ResponseEntity.ok().build();
+
+        var token = tokenService.generateToken((UsuarioEntity) auth.getPrincipal());
+        return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 }
