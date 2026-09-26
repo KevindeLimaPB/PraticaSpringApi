@@ -1,6 +1,5 @@
 package com.sistema.mercadoOnline.Dto;
 
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
@@ -12,10 +11,11 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Builder
 public class ClienteVIPDTO {
-    @NotNull
-    private Integer id;
 
-    @NotEmpty
+    @NotNull
     private BigDecimal saldo;
+
+    @NotNull
+    private Integer tipoId;
 }
 

@@ -1,6 +1,5 @@
 package com.sistema.mercadoOnline.Dto;
 
-import com.sistema.mercadoOnline.Database.Model.UsuarioEntity;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
@@ -16,5 +15,11 @@ public class Tipo_cliente_DTO {
     private  String descricao;
 
     @NotNull
-    private UsuarioEntity usuarioEntity;
+    private Integer usuarioId;
+
+    /*
+    * Não Use NotEmpty
+    * Não Use NotBlank
+    * Em um Int ou Integer
+    * */
 }

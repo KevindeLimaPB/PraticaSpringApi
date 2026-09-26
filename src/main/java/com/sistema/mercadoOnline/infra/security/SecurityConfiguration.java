@@ -23,7 +23,7 @@ public class SecurityConfiguration {
 
     //metodo de autorização e authenticação
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(sessions -> sessions.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -33,10 +33,11 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.POST, "/register/login").permitAll()
                         .requestMatchers(HttpMethod.GET,"/user").permitAll()
                         .requestMatchers(HttpMethod.POST, "/user").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST,"/tipo").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/tipo").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
-
                 .build();
     }
     @Bean
