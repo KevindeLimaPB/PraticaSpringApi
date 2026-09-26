@@ -1,6 +1,5 @@
 package com.sistema.mercadoOnline.Database.Model.Base;
 
-import jakarta.persistence.MappedSuperclass;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -9,7 +8,6 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @Setter
 @ToString
-@MappedSuperclass
 @SuperBuilder
 public class UserBase {
 

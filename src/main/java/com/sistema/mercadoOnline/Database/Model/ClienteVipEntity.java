@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
-@Builder
+//SuperBuilder ele tem o Builder já conectado
 public class ClienteVipEntity  extends UserBase {
 
     @Id

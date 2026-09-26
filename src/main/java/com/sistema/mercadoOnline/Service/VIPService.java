@@ -29,6 +29,8 @@ public class VIPService {
                 .orElseThrow(() -> new NotFoundException("Tipo não encontrado"));
 
             ClienteVipEntity clienteVipADD = ClienteVipEntity.builder()
+                    .nome(clienteVIPDTO.getNome())
+                    //falta mais aqui
                     .saldo(clienteVIPDTO.getSaldo())
                     .tipoCliente(clienteVIP)
                     .build();

@@ -13,6 +13,15 @@ import java.math.BigDecimal;
 public class ClienteVIPDTO {
 
     @NotNull
+    private String nome;
+
+    @NotNull
+    private String telefone;
+
+    @NotNull
+    private String endereco;
+
+    @NotNull
     private BigDecimal saldo;
 
     @NotNull
