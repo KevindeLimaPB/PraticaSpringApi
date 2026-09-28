@@ -1,6 +1,5 @@
 package com.sistema.mercadoOnline.Database.Model;
 
-import com.sistema.mercadoOnline.Database.Model.Base.UserBase;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -11,13 +10,21 @@ import lombok.experimental.SuperBuilder;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@SuperBuilder
 @Builder
-public class ClienteEntity extends UserBase {
+public class ClienteEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(nullable = true)
+    private String nome;
+
+    @Column(nullable = true)
+    private String telefone;
+
+    @Column(nullable = true)
+    private String endereco;
 
 //CREATE FOREIGN KEY TIPO_CLIENTE
 

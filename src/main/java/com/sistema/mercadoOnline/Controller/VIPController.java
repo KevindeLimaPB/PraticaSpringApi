@@ -29,4 +29,10 @@ public class VIPController {
     public ClienteVipEntity save(@RequestBody @Valid ClienteVIPDTO clienteVIPDTO) throws Exception{
         return vipService.save(clienteVIPDTO);
     }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void update(@PathVariable Integer id, @RequestBody @Valid String telefone) throws Exception{
+        vipService.update(id,telefone);
+    }
 }

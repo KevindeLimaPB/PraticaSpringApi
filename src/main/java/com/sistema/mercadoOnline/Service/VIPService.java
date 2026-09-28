@@ -8,7 +8,6 @@ import com.sistema.mercadoOnline.Dto.ClienteVIPDTO;
 import com.sistema.mercadoOnline.Exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -16,8 +15,7 @@ import java.util.List;
 public class VIPService {
 
     private final ClienteVipRepository vipRepository;
-    private  final TipoClienteRepository tipoClienteRepository;
-
+    private final TipoClienteRepository tipoClienteRepository;
 
     public List<ClienteVipEntity> findAll(){
         return vipRepository.findAll();
@@ -30,7 +28,8 @@ public class VIPService {
 
             ClienteVipEntity clienteVipADD = ClienteVipEntity.builder()
                     .nome(clienteVIPDTO.getNome())
-                    //falta mais aqui
+                    .telefone(clienteVIPDTO.getTelefone())
+                    .endereco(clienteVIPDTO.getEndereco())
                     .saldo(clienteVIPDTO.getSaldo())
                     .tipoCliente(clienteVIP)
                     .build();
@@ -38,4 +37,18 @@ public class VIPService {
             return vipRepository.save(clienteVipADD);
     }
 
+    public void update(Integer id, String telefone) throws  Exception{
+
+        ClienteVipEntity clienteVipEntity = vipRepository
+                .findById(id)
+                .orElseThrow(() -> new NotFoundException("Id"));
+
+        ClienteVipEntity clienteVip = ClienteVipEntity.builder()
+                .telefone(telefone)
+                .id(clienteVipEntity.getId())
+                .build();
+
+        vipRepository.updateTelefoneById(telefone,clienteVipEntity.getId());
+
+    }
 }

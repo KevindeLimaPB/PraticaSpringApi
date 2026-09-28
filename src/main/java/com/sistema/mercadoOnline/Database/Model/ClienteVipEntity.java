@@ -1,12 +1,8 @@
 package com.sistema.mercadoOnline.Database.Model;
 
-import com.sistema.mercadoOnline.Database.Model.Base.UserBase;
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
-
 import java.math.BigDecimal;
-
 
 @Entity
 @Table(name = "Cliente_VIP")
@@ -14,13 +10,23 @@ import java.math.BigDecimal;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@SuperBuilder
+@Builder
 //SuperBuilder ele tem o Builder já conectado
-public class ClienteVipEntity  extends UserBase {
+public class ClienteVipEntity  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(nullable = true)
+    private String nome;
+
+    @Column(nullable = true)
+    private String telefone;
+
+    @Column(nullable = true)
+    private String endereco;
+
 
     @Column(nullable = true)
     private BigDecimal saldo = BigDecimal.ZERO;
