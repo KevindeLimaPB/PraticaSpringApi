@@ -19,4 +19,9 @@ public interface ClienteVipRepository extends JpaRepository<ClienteVipEntity, In
 
     @Query("SELECT c FROM ClienteVipEntity c WHERE c.id = :id")
     Optional<ClienteVipEntity> findById(@Param("id") Integer id);
+
+    @Modifying
+    @Transactional
+    @Query("DELETE FROM ClienteVipEntity c WHERE c.id = :id")
+    void delete(@Param("id") Integer id);
 }

@@ -41,7 +41,7 @@ public class VIPService {
 
         ClienteVipEntity clienteVipEntity = vipRepository
                 .findById(id)
-                .orElseThrow(() -> new NotFoundException("Id"));
+                .orElseThrow(() -> new NotFoundException("Id não encontrado"));
 
         ClienteVipEntity clienteVip = ClienteVipEntity.builder()
                 .telefone(telefone)
@@ -49,6 +49,12 @@ public class VIPService {
                 .build();
 
         vipRepository.updateTelefoneById(telefone,clienteVipEntity.getId());
+    }
 
+    public void delete(Integer id) throws  Exception{
+       ClienteVipEntity clienteVipEntity = vipRepository.findById(id)
+               .orElseThrow(() -> new NotFoundException("Id não encontrado"));
+
+       vipRepository.delete(clienteVipEntity.getId());
     }
 }

@@ -35,4 +35,11 @@ public class VIPController {
     public void update(@PathVariable Integer id, @RequestBody @Valid String telefone) throws Exception{
         vipService.update(id,telefone);
     }
+
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Integer id) throws Exception{
+         vipService.delete(id);
+    }
 }
