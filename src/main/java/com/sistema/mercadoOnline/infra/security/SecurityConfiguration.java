@@ -27,7 +27,6 @@ public class SecurityConfiguration {
         return httpSecurity
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(sessions -> sessions.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                //ate aqui ele apenas tira as config do spring security
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/user/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/register/login").permitAll()

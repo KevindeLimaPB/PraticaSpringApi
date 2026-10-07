@@ -1,6 +1,7 @@
 package com.sistema.mercadoOnline.Database.Model;
 
 import com.sistema.mercadoOnline.Database.Model.Enums.UserRole;
+import com.sistema.mercadoOnline.Dto.UsuarioDto;
 import jakarta.persistence.*;
 import lombok.*;
 import org.jspecify.annotations.Nullable;
@@ -33,6 +34,12 @@ public class UsuarioEntity implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private UserRole role;
+
+    public UsuarioEntity(UsuarioDto usuarioDto) {
+        this.login = usuarioDto.getLogin();
+        this.senha = usuarioDto.getSenha();
+        this.role = usuarioDto.getRole();
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
