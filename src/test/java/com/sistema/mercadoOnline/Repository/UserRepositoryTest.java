@@ -36,6 +36,15 @@ public class UserRepositoryTest {
         assertThat(foundUser.get().getLogin()).isEqualTo("LC");
     }
 
+
+    @Test
+    @DisplayName("User not exists")
+    void findByLoginSucessdois(){
+
+        Optional<UsuarioEntity> foundUser = this.usuarioRepository.findByLoginUser("LCe");
+        assertThat(foundUser.isEmpty()).isTrue();
+    }
+
     private UsuarioEntity createUser(UsuarioDto usuarioDto){
         UsuarioEntity user = new UsuarioEntity(usuarioDto);
         this.entityManager.persist(user);
