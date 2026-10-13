@@ -14,7 +14,7 @@ public interface ClienteVipRepository extends JpaRepository<ClienteVipEntity, In
     @Modifying
     @Transactional
     @Query("UPDATE ClienteVipEntity c SET c.telefone = :telefone WHERE c.id = :id")
-    Integer updateTelefoneById(@Param("telefone") String telefone, @Param("id") Integer id);
+    void updateTelefoneById(@Param("telefone") String telefone, @Param("id") Integer id);
 
 
     @Query("SELECT c FROM ClienteVipEntity c WHERE c.id = :id")

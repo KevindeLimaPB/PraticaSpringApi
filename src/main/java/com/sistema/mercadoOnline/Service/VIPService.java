@@ -43,10 +43,10 @@ public class VIPService {
                 .findById(id)
                 .orElseThrow(() -> new NotFoundException("Id não encontrado"));
 
-        ClienteVipEntity clienteVip = ClienteVipEntity.builder()
+        /*ClienteVipEntity clienteVip = ClienteVipEntity.builder()
                 .telefone(telefone)
                 .id(clienteVipEntity.getId())
-                .build();
+                .build()*/;
 
         vipRepository.updateTelefoneById(telefone,clienteVipEntity.getId());
     }

@@ -32,7 +32,8 @@ public class VIPController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@PathVariable Integer id, @RequestBody @Valid String telefone) throws Exception{
+    public void update(@PathVariable("id") Integer id, @RequestBody @Valid String telefone) throws Exception{
+        telefone = telefone.replace("\"","");
         vipService.update(id,telefone);
     }
 
