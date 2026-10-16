@@ -30,6 +30,9 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/user/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/register/login").permitAll()
+
+                        .requestMatchers(HttpMethod.POST, "/register").permitAll()
+
                         .requestMatchers(HttpMethod.GET,"/user").permitAll()
                         .requestMatchers(HttpMethod.POST, "/user").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST,"/tipo").hasRole("ADMIN")

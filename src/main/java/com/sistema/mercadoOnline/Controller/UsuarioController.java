@@ -26,7 +26,7 @@ public class UsuarioController {
 
     @PostMapping("/login")
     @ResponseStatus(HttpStatus.CREATED)
-    public UsuarioEntity save(@Valid @RequestBody UsuarioDto usuarioDto) throws Exception{
+    public UsuarioEntity save(@Valid @RequestBody UsuarioDto usuarioDto) throws Exception {
         return usuarioService.save(usuarioDto);
     }
 }

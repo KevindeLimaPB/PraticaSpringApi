@@ -3,10 +3,15 @@ package com.sistema.mercadoOnline.Handler;
 import com.sistema.mercadoOnline.Exception.ErrorResponse;
 import com.sistema.mercadoOnline.Exception.LoginDuplicadoException;
 import com.sistema.mercadoOnline.Exception.NotFoundException;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import tools.jackson.databind.exc.UnrecognizedPropertyException;
+
+import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalHandlerException {
@@ -28,5 +33,25 @@ public class GlobalHandlerException {
                 .status(HttpStatus.NOT_FOUND.value())
                 .build();
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<Map<String, Object>> HandlerMensageNotException(
+            HttpMessageNotReadableException ex)
+    {
+        Throwable causa = ex.getMostSpecificCause();
+
+        String mensage = "Erro no JSON";
+
+        if(causa instanceof UnrecognizedPropertyException erro){
+            mensage = "Campo desconhecido" + erro.getPropertyName();
+        }
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(Map.of(
+                        "status ",400,
+                        "mensagem ",mensage
+                ));
     }
 }
